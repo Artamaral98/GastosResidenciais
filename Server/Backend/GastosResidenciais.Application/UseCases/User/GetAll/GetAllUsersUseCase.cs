@@ -19,29 +19,30 @@ public class GetAllUsersUseCase : IGetAllUsersUseCase
 
     public async Task<ResponseGetAllUsersJson> Execute()
     {
-        // Obtém todos os usuários com suas respectivas transações
+        //Obtém todos os usuários com suas respectivas transações
         var users = await _userRepository.GetAllUsersWithTransactions();
 
-        // Instancia o objeto de resposta
+        //Instancia o objeto de resposta
         var response = new ResponseGetAllUsersJson();
 
-        // Realiza o cálculo de receitas, despesas e saldo e modifica a response adicionando os resultados
+        //Realiza o cálculo de receitas, despesas e saldo e modifica a response adicionando os resultados
         BalanceCalculate(users, response);
 
         return response;
     }
 
-    // Método responsável por calcular receitas, despesas e saldo de cada usuário
+    //Método responsável por calcular receitas, despesas e saldo de cada usuário
     private void BalanceCalculate(IEnumerable<Domain.Entities.User> users, ResponseGetAllUsersJson response)
     {
+        //Declara com valor 0 o total de despesas, total de receitas e o total geral
         decimal totalRevenues = 0;
         decimal totalExpenses = 0;
         decimal globalTotal = 0;
 
-        // Itera sobre todos os usuários para calcular receitas, despesas e saldo
+        //Itera sobre todos os usuários para calcular receitas, despesas e saldo
         foreach (var user in users)
         {
-            var revenues = user.Transactions
+            var revenues = user.Transactions  //Adentra a lista de transações de cada usuário. busca o valor das despesas e soma o total.
                                .Where(t => t.Types == TransactionTypes.revenue)
                                .Sum(t => t.Valor);
 
@@ -55,7 +56,7 @@ public class GetAllUsersUseCase : IGetAllUsersUseCase
             totalExpenses += expenses;
             globalTotal += balance;
 
-            // Mapeia automaticamente para UserSummaryResponse usando AutoMapper
+            //Mapeia automaticamente para UserSummaryResponse usando AutoMapper
             var userSummary = _mapper.Map<UserSummaryResponse>(user);
             userSummary.TotalRevenue = revenues;
             userSummary.TotalExpenses = expenses;
@@ -64,7 +65,7 @@ public class GetAllUsersUseCase : IGetAllUsersUseCase
             response.Users.Add(userSummary);
         }
 
-        // Adiciona o total geral na response
+        //Adiciona o total geral na response
         response.GlobalTotal = new GlobalTotalResponse
         {
             TotalRevenue = totalRevenues,

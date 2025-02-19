@@ -4,6 +4,7 @@ import Users from "../Views/Users";
 import NewTransaction from "../Views/NewTransaction";
 import Transactions from "../Views/Transactions";
 import Total from "../Views/Total";
+import NotFound from "../Views/NotFound";
 
 const routes: RouteObject[] = [
     {
@@ -26,6 +27,10 @@ const routes: RouteObject[] = [
         path: '/consulta-de-totais',
         element: <Total />
     },
+    {
+        path: '*',
+        element: <NotFound />
+    }
 
 ];
 
