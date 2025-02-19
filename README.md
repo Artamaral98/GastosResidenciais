@@ -3,6 +3,7 @@ Instruções para inicialização do projeto: Recomendo a utilização do VSCODE 2022 
 - "Connection": "Data Source=NOMEDOSEUSERVIDOR; Initial Catalog=gastosresidenciais;User ID=SEULOGONDOSQLSERVER;Password=SUASENHA;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;"
 
 - A ConnectionString deverá sem implementada em "Connection": "". Você encontrará no diretório: Server/Backend/GastosResidenciais.API/appsettings/appsettings.Development
+- - Não é necessária a criação manual do servidor/schema, apenas insira suas credenciais de login SQL SERVER e inicialize o projeto.
 
 -Após realizar a conexão com o banco de dados, siga as instruções para inicializar a aplicação:
 	- Inicie a API teclando F5, ou cliando no botão de play acima.
