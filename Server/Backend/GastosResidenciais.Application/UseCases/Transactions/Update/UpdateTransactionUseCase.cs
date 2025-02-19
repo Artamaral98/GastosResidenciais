@@ -27,7 +27,18 @@ public class UpdateTransactionUseCase : IUpdateTransactionUseCase
     {
         Validate(request);
 
+        var isUnderage = await _userRepository.IsUnderage(request.UserId);
+
         var transaction = _mapper.Map<Domain.Entities.Transactions>(request);
+
+        if (isUnderage)
+        {
+            if (request.Types == Domain.Enums.TransactionTypes.revenue)
+            {
+                throw new ErrorOnValidationException(new List<string> { ResourceMessagesException.INVALID_TRANSACTION_FOR_UNDERAGE });
+            }
+
+        }
 
         await _transactionRepository.UpdateTransaction(transaction);
 

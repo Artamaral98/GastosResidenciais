@@ -17,6 +17,7 @@ const TransactionUpdateModal: React.FC<UpdateTransactionModalProps> = ({
                 description: transaction.description,
                 type: transaction.type === "expense" ? 0 : 1, //Permite que o tipo permaneça o mesmo
                 valor: transaction.valor,
+                userId: transaction.userId
             });
         }
     }, [transaction, setEditTransaction]);

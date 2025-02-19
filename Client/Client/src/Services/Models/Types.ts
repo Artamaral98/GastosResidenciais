@@ -39,7 +39,7 @@ export interface DeleteModalProps {
 
 export interface UpdateTransactionModalProps {
     isOpen: boolean;
-    transaction: { id: number | null; description: string; type: number | null; valor: number | null };
+    transaction: { id: number | null; description: string; type: number | null; valor: number | null; userId: number | null };
     closeModal: () => void;
     updateTransaction: () => void;
     setEditTransaction: React.Dispatch<React.SetStateAction<{

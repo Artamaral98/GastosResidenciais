@@ -22,11 +22,13 @@ const useTransactions = () => {
         type: number | null;
         description: string;
         valor: number | null;
+        userId: number | null;
     }>({
         id: null,
         type: null,
         description: "",
         valor: null,
+        userId: null
     });
 
     
@@ -122,21 +124,28 @@ const useTransactions = () => {
         }
     }
 
-    //método que identificar a transação a ser modificada, e insere seus dados em TransactionToEdit
+    //método que identifica a transação a ser modificada
     const transactionToBeEdit = async (id: number) => {
-        const TransactionToEdit = transactions.find(transaction => transaction.id === id)
+        // Encontrar a transação que está sendo editada
+        const transactionToEdit = transactions.find(transaction => transaction.id === id);
+        if (!transactionToEdit) return;
 
-        if (TransactionToEdit) {
-            setEditTransaction({
-                id: TransactionToEdit.id,
-                description: TransactionToEdit.description,
-                type: TransactionToEdit.types,
-                valor: TransactionToEdit.valor
+        // Verificar se o usuário pode editar a transação com base na idade
+        const isAgeValid = await verifyAgeToEdit(transactionToEdit);
+        if (!isAgeValid) return;
 
-            })
-            setIsEditModalOpen(true)
-        }
+        // Se a verificação da idade passar, preencher os dados para edição
+        setEditTransaction({
+            id: transactionToEdit.id,
+            description: transactionToEdit.description,
+            type: transactionToEdit.types,
+            valor: transactionToEdit.valor,
+            userId: transactionToEdit.userId
+        });
+
+        setIsEditModalOpen(true);
     }
+
 
     //função que realiza a alteração dos dados da transação.
     const updateTransaction = async (id: number): Promise<boolean> => { //o boolean vai ser util para fazer o modal fechar caso as validações tenham sido confirmadas
@@ -146,7 +155,9 @@ const useTransactions = () => {
                 valor: Number(editTransaction.valor),
                 types: Number(editTransaction.type),
                 id: Number(editTransaction.id),
+                userId: Number(editTransaction.userId)
             });
+
 
             //alterando o estado da lista de transações, adicionando a nova transação
             const updatedTransactions = transactions.map((transaction) =>
@@ -205,12 +216,6 @@ const useTransactions = () => {
         }
     };
 
-    //fechar modal de atualizar transação
-    //const closeTransactionUpdateModal = async () => {
-    //    if (isEditModalOpen) {
-    //        setIsEditModalOpen(false)
-    //    }
-    //}
 
     const openTransactionUpdateModal = (id: number) => {
         const transactionToEdit = transactions.find(transaction => transaction.id === id);
@@ -220,7 +225,8 @@ const useTransactions = () => {
                 id: transactionToEdit.id,
                 description: transactionToEdit.description,
                 type: transactionToEdit.types,
-                valor: transactionToEdit.valor
+                valor: transactionToEdit.valor,
+                userId: transactionToEdit.userId
             });
             setIsEditModalOpen(true);
         }
@@ -234,8 +240,33 @@ const useTransactions = () => {
             type: null,
             description: "",
             valor: null,
+            userId: null
         });
     };
+
+
+    //método para verificar a idade da transação do usuário
+    const verifyAgeToEdit = async (transactionToEdit: Transaction) => {
+        try {
+            //obter os dados do usuario baseado no userid da transação
+            const userResponse = await api.get(`user/${transactionToEdit.userId}`);
+            const age = userResponse.data.age;
+
+            //verificar se a modificação é de 'expense' para 'revenue'
+            if (transactionToEdit.types === "expense" && editTransaction.type === "revenue") {
+                if (age < 18) {
+                    toast.error("Usuários com menos de 18 anos não podem alterar uma transação de despesa para receita.");
+                    return false;
+                }
+            }
+
+            return true; // Se tudo estiver ok, pode continuar a edição
+        } catch (error) {
+            console.error("Erro ao verificar a idade do usuário:", error);
+            return false;
+        }
+    }
+
 
 
     //carrega as transações após montar o componente
@@ -275,7 +306,6 @@ const useTransactions = () => {
         setEditTransaction,
         fetchTransactions,
         openTransactionUpdateModal,
-        closeTransactionUpdateModal
     };
 };
 

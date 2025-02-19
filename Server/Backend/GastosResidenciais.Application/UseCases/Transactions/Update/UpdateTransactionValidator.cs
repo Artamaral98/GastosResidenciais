@@ -1,5 +1,4 @@
-﻿using System.Transactions;
-using FluentValidation;
+﻿using FluentValidation;
 using GastosResidenciais.Communication.Requests.TransactionRequests;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;
@@ -22,12 +21,6 @@ public class UpdateTransactionValidator : AbstractValidator<RequestUpdateTransac
         RuleFor(transaction => transaction.Types).IsInEnum().WithMessage(ResourceMessagesException.TYPE_INVALID);
         RuleFor(transaction => transaction.Id).NotEmpty().WithMessage(ResourceMessagesException.NAME_EMPTY);
 
-        ////Verificar se o usuário possui mais de 18 anos. Caso tenha sido enviado uma receita e o usuário seja menor de 18, será retornado uma mensagem de erro.
-        //RuleFor(transaction => transaction).MustAsync(async (transaction, _) =>
-        //{
-        //    return !(await _repository!.IsUnderage(transaction.UserId) && transaction.Types == Domain.Enums.TransactionTypes.revenue);
-        //})
-        //    .WithMessage(ResourceMessagesException.INVALID_TRANSACTION_FOR_UNDERAGE);
     }
 
 }

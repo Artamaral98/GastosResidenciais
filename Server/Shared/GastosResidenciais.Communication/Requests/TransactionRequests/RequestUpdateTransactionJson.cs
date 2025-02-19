@@ -8,4 +8,5 @@ public class RequestUpdateTransactionJson
     public string Description { get; set; } = string.Empty;
     public decimal Valor { get; set; }
     public TransactionTypes? Types { get; set; }
+    public long UserId { get; set; }
 }
