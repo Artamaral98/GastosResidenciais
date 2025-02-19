@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GastosResidenciais.Exceptions\GastosResidenciais.Exceptions.csproj" />
+    <ProjectReference Include="..\..\..\..\GastosResidenciais - Copia\GastosResidenciais.Exceptions\GastosResidenciais.Exceptions.csproj" />
     <ProjectReference Include="..\..\Shared\GastosResidenciais.Communication\GastosResidenciais.Communication.csproj" />
     <ProjectReference Include="..\GastosResidenciais.Domain\GastosResidenciais.Domain.csproj" />
   </ItemGroup>

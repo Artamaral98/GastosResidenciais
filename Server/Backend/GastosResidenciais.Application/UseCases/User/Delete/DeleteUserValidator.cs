@@ -1,6 +1,6 @@
 ﻿using GastosResidenciais.Exceptions;
 using FluentValidation;
-using GastosResidenciais.Communication.Requests;
+using GastosResidenciais.Communication.Requests.UserRequests;
 
 namespace GastosResidenciais.Application.UseCases.User.Delete;
 

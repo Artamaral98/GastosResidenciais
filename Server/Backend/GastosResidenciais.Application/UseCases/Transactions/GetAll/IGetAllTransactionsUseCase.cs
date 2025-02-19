@@ -1,4 +1,4 @@
-﻿using GastosResidenciais.Communication.Responses;
+﻿using GastosResidenciais.Communication.Responses.TransactionResponses;
 
 namespace GastosResidenciais.Application.UseCases.Transactions.GetAll;
 

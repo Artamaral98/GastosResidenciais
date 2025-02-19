@@ -1,4 +1,4 @@
-﻿namespace GastosResidenciais.Communication.Responses;
+﻿namespace GastosResidenciais.Communication.Responses.UserResponses;
 
 public class ResponseGetAllUsersJson
 {

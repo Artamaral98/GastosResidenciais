@@ -12,6 +12,7 @@ public class Version0000002 : VersionBase
             .WithColumn("Valor").AsDecimal().NotNullable()
             .WithColumn("Types").AsInt32().NotNullable()
             .WithColumn("CreatedAt").AsDateTime().NotNullable().WithDefault(SystemMethods.CurrentUTCDateTime)
+            .WithColumn("UpdatedAt").AsDateTime().Nullable()
 
             //Uma pessoa tem N transações, desta forma, deve ser colocado em "Transações" o Id desta pessoa como uma chave estrangeira para relaciona-los e facilitar consultas SQL.
             .WithColumn("UserId").AsInt64().NotNullable().ForeignKey("FK_Transactions_User_Id", "Users", "Id")

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using GastosResidenciais.Application.UseCases.User.Get;
-using GastosResidenciais.Communication.Requests;
+using GastosResidenciais.Communication.Requests.TransactionRequests;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;
 

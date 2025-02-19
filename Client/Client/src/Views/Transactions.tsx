@@ -3,9 +3,10 @@ import Sidebar from "../Components/Sidebar";
 import useTransactions from "../Services/Hooks/useTransactions";
 import Footer from "../Components/Footer";
 import formatTime from "../Utils/FormatTime";
-import { FaTrash } from "react-icons/fa";
-import DeleteTransactionModal from "../Components/DeleteTransactionModal";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import DeleteTransactionModal from "../Components/Modals/DeleteTransactionModal";
 import { IntlProvider, FormattedNumber } from "react-intl";
+import UpdateTransactionModal from "../Components/Modals/UpdateTransactionModal";
 
 const Transactions: React.FC = () => {
     const {
@@ -14,7 +15,14 @@ const Transactions: React.FC = () => {
         closeTransactionDeleteModal,
         selectedTransaction,
         confirmDeleteTransaction,
+        transactionToBeEdit,
+        updateTransaction,
+        isEditModalOpen,
+        closeTransactionUpdateModal,
+        editTransaction,
+        setEditTransaction
     } = useTransactions();
+
 
     return (
         <IntlProvider locale="pt-BR">
@@ -52,8 +60,8 @@ const Transactions: React.FC = () => {
                                                 <td className="py-3 px-4">{transaction.description}</td>
                                                 <td
                                                     className={`py-3 px-4 font-bold ${transaction.types === "expense"
-                                                            ? "text-red-500"
-                                                            : "text-blue-500"
+                                                        ? "text-red-500"
+                                                        : "text-blue-500"
                                                         }`}
                                                 >
                                                     {transaction.types === "expense" && "-"}
@@ -72,9 +80,15 @@ const Transactions: React.FC = () => {
                                                 </td>
                                                 <td className="py-3 px-4 text-center">
                                                     <FaTrash
-                                                        className="cursor-pointer hover:text-red-800 transition-colors"
+                                                        className="cursor-pointer hover:text-red-800 transition-colors inline-block"
                                                         onClick={() =>
                                                             openDeleteTransactionModal(transaction.id)
+                                                        }
+                                                    />
+                                                    <FaEdit
+                                                        className="ml-2 cursor-pointer hover:text-blue-800 transition-colors inline-block"
+                                                        onClick={() =>
+                                                            transactionToBeEdit(transaction.id)
                                                         }
                                                     />
                                                 </td>
@@ -89,6 +103,14 @@ const Transactions: React.FC = () => {
                         isOpen={!!selectedTransaction}
                         onClose={closeTransactionDeleteModal}
                         onConfirm={confirmDeleteTransaction}
+                    />
+
+                    <UpdateTransactionModal
+                        isOpen={isEditModalOpen}
+                        transaction={editTransaction}
+                        closeModal={closeTransactionUpdateModal}
+                        onConfirm={confirmDeleteTransaction}
+
                     />
 
                     <Footer />

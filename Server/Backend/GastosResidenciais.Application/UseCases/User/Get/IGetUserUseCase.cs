@@ -1,5 +1,5 @@
-﻿using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+﻿using GastosResidenciais.Communication.Requests.UserRequests;
+using GastosResidenciais.Communication.Responses.UserResponses;
 
 namespace GastosResidenciais.Application.UseCases.User.Get;
 

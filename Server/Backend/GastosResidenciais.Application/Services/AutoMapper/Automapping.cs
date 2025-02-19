@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Requests.TransactionRequests;
+using GastosResidenciais.Communication.Requests.UserRequests;
+using GastosResidenciais.Communication.Responses.TransactionResponses;
+using GastosResidenciais.Communication.Responses.UserResponses;
 using GastosResidenciais.Domain.Entities;
 
 namespace GastosResidenciais.Application.Services.AutoMapper;
@@ -19,6 +21,7 @@ public class Automapping : Profile
         //Mapemaneto para request de Users, utilizado em CreateUserUseCase
         CreateMap<RequestCreateUserJson, Domain.Entities.User>();
         CreateMap<RequestCreateTransactionJson, Transactions>();
+        CreateMap<RequestUpdateTransactionJson, Transactions>();
     }
     //Configuração do mapeamento para as responses.
     private void DomainToResponse()
@@ -50,5 +53,11 @@ public class Automapping : Profile
             .ForMember(dest => dest.Types, opt => opt.MapFrom(src => src.Types.ToString()))
             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.User.Name))
             .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.User.Age));
+
+        CreateMap<Transactions, ResponseUpdatedTransactionJson>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
+            .ForMember(dest => dest.Valor, opt => opt.MapFrom(src => src.Valor))
+            .ForMember(dest => dest.Types, opt => opt.MapFrom(src => src.Types.ToString()));
     }
 }

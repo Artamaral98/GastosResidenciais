@@ -1,6 +1,6 @@
 ﻿namespace GastosResidenciais.Application.UseCases.Transactions.Delete;
 using FluentValidation;
-using GastosResidenciais.Communication.Requests;
+using GastosResidenciais.Communication.Requests.TransactionRequests;
 using GastosResidenciais.Exceptions;
 
 class DeleteTransactionValidator : AbstractValidator<RequestDeleteTransactionJson>

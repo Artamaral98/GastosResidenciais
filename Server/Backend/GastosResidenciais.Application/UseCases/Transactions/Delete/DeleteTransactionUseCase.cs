@@ -1,5 +1,5 @@
-﻿using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+﻿using GastosResidenciais.Communication.Requests.TransactionRequests;
+using GastosResidenciais.Communication.Responses.TransactionResponses;
 using GastosResidenciais.Domain.Repositories;
 using GastosResidenciais.Domain.Repositories.Transaction;
 using GastosResidenciais.Exceptions;

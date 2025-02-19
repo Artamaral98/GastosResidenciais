@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GastosResidenciais.Application.UseCases.User.Get;
-using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Requests.TransactionRequests;
+using GastosResidenciais.Communication.Responses.TransactionResponses;
 using GastosResidenciais.Domain.Repositories.Transaction;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;

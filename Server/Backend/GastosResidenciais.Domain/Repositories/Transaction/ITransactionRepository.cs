@@ -11,4 +11,6 @@ public interface ITransactionRepository
 
     public Task DeleteTransaction(long id);
 
+    public Task UpdateTransaction(Transactions transaction);
+
 }

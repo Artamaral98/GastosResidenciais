@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Requests.UserRequests;
+using GastosResidenciais.Communication.Responses.UserResponses;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;
 

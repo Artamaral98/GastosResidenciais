@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Responses.TransactionResponses;
 using GastosResidenciais.Domain.Repositories.Transaction;
 
 namespace GastosResidenciais.Application.UseCases.Transactions.GetAll;

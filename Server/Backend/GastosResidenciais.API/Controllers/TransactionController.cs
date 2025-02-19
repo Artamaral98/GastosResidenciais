@@ -2,9 +2,10 @@
 using GastosResidenciais.Application.UseCases.Transactions.Delete;
 using GastosResidenciais.Application.UseCases.Transactions.Get;
 using GastosResidenciais.Application.UseCases.Transactions.GetAll;
-using GastosResidenciais.Application.UseCases.User.Delete;
-using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Application.UseCases.Transactions.Update;
+using GastosResidenciais.Communication.Requests.TransactionRequests;
+using GastosResidenciais.Communication.Responses.TransactionResponses;
+using GastosResidenciais.Communication.Responses.UserResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GastosResidenciais.API.Controllers;
@@ -19,7 +20,7 @@ public class TransactionController : ControllerBase
         [FromServices] IGetTransactionUseCase useCase,
         [FromRoute] long userId)
     {
-        var transactions = await useCase.Execute(new RequestGetTransactionJson {UserId = userId });
+        var transactions = await useCase.Execute(new RequestGetTransactionJson { UserId = userId });
         return Ok(transactions);
     }
 
@@ -53,6 +54,17 @@ public class TransactionController : ControllerBase
         var result = await useCase.Execute(new RequestDeleteTransactionJson { Id = id });
 
         return Ok(result);
+    }
+
+    [HttpPut]
+    [ProducesResponseType(typeof(ResponseUpdatedTransactionJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> UpdateTransaction(
+    [FromServices] IUpdateTransactionUseCase useCase,
+    [FromBody] RequestUpdateTransactionJson request)
+    {
+        var result = await useCase.Execute(request);
+
+        return Ok( result);
     }
 
 }

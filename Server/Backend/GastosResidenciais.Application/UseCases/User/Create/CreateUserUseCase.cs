@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Requests.UserRequests;
+using GastosResidenciais.Communication.Responses.UserResponses;
 using GastosResidenciais.Domain.Repositories;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;
+
 
 namespace GastosResidenciais.Application.UseCases.User.Create;
 
@@ -23,6 +24,7 @@ public class CreateUserUseCase : ICreateUserUseCase
     }
     public async Task<ResponseCreatedUserJson> Execute(RequestCreateUserJson request) 
     {
+        //Realiza a validação da request.
         Validate(request);
 
         var user = _mapper.Map<Domain.Entities.User>(request);

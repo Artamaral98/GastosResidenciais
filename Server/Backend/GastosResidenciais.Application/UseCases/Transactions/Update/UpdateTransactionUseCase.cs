@@ -6,16 +6,16 @@ using GastosResidenciais.Domain.Repositories.Transaction;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;
 
-namespace GastosResidenciais.Application.UseCases.Transactions.Create;
+namespace GastosResidenciais.Application.UseCases.Transactions.Update;
 
-public class CreateTransactionUseCase : ICreateTransactionUseCase
+public class UpdateTransactionUseCase : IUpdateTransactionUseCase
 {
     private readonly ITransactionRepository _transactionRepository;
     private readonly IMapper _mapper;
     private readonly ISaveChangesUnit _saveChangesUnit;
     private readonly IUserRepository _userRepository;
 
-    public CreateTransactionUseCase(ITransactionRepository transactionRepository, IMapper mapper, ISaveChangesUnit saveChangesUnit, IUserRepository userRepository)
+    public UpdateTransactionUseCase(ITransactionRepository transactionRepository, IMapper mapper, ISaveChangesUnit saveChangesUnit, IUserRepository userRepository)
     {
         _transactionRepository = transactionRepository;
         _mapper = mapper;
@@ -23,27 +23,24 @@ public class CreateTransactionUseCase : ICreateTransactionUseCase
         _userRepository = userRepository;
     }
 
-    public async Task<ResponseCreateTransactionJson> Execute(RequestCreateTransactionJson request)
+    public async Task<ResponseUpdatedTransactionJson> Execute(RequestUpdateTransactionJson request)
     {
-        await Validate(request);
+        Validate(request);
 
-        //Mapeando a request, evitando mapeamento manual. 
         var transaction = _mapper.Map<Domain.Entities.Transactions>(request);
 
-        //Criando a nova transação do usuário
-        await _transactionRepository.AddTransaction(transaction);
+        await _transactionRepository.UpdateTransaction(transaction);
 
-        //Salvando as alterações no DB
         await _saveChangesUnit.Commit();
 
-        //Retornando o response com o ID gerado
-        return _mapper.Map<ResponseCreateTransactionJson>(transaction);
+        return _mapper.Map<ResponseUpdatedTransactionJson>(transaction);
+
     }
 
-    private async Task Validate(RequestCreateTransactionJson request)
+    private void Validate(RequestUpdateTransactionJson request)
     {
-        var validator = new CreateTransactionValidator(_userRepository);
-        var result = await validator.ValidateAsync(request);
+        var validator = new UpdateTransactionValidator(_userRepository);
+        var result = validator.Validate(request);
 
         if (result.IsValid == false) //Retornará true caso a requisição seja válida ou false caso alguma informação esteja inválida.
         {
@@ -54,3 +51,4 @@ public class CreateTransactionUseCase : ICreateTransactionUseCase
 
     }
 }
+

@@ -1,4 +1,4 @@
-﻿namespace GastosResidenciais.Communication.Requests;
+﻿namespace GastosResidenciais.Communication.Requests.TransactionRequests;
 
 public class RequestGetTransactionJson
 {

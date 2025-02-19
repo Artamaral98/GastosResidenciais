@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import { TransactionsModalProps } from "../Services/Types/Types";
-import formatTime from "../Utils/FormatTime";
+import { TransactionsModalProps } from "../../Services/Types/Types";
+import formatTime from "../../Utils/FormatTime";
 import { IntlProvider, FormattedNumber } from "react-intl";
 
 const TransactionsModal: React.FC<TransactionsModalProps> = ({ isOpen, onClose, transactions }) => {

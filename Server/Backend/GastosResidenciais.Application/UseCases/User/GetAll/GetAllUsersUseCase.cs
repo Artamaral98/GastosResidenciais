@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GastosResidenciais.Application.UseCases.User.GetAll;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Responses.UserResponses;
 using GastosResidenciais.Domain.Enums;
 using GastosResidenciais.Domain.Repositories.User;
 

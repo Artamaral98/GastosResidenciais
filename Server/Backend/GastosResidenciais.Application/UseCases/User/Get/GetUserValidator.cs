@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using GastosResidenciais.Communication.Requests;
+using GastosResidenciais.Communication.Requests.UserRequests;
 using GastosResidenciais.Domain.Repositories.User;
 using GastosResidenciais.Exceptions;
 

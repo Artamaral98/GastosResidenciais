@@ -1,9 +1,9 @@
 import React from "react";
 import Sidebar from "../Components/Sidebar";
-import TransactionsModal from "../Components/TransactionsModal";
+import TransactionsModal from "../Components/Modals/TransactionsModal";
 import useUsers from "../Services/Hooks/useUsers";
 import { FaTrash, FaEye } from "react-icons/fa";
-import DeleteModal from "../Components/DeleteModal";
+import DeleteModal from "../Components/Modals/DeleteModal";
 import Footer from "../Components/Footer";
 import useTransactions from "../Services/Hooks/useTransactions";
 

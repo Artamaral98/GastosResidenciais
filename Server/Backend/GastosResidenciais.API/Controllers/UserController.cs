@@ -3,7 +3,8 @@ using GastosResidenciais.Application.UseCases.User.Delete;
 using GastosResidenciais.Application.UseCases.User.Get;
 using GastosResidenciais.Application.UseCases.User.GetAll;
 using GastosResidenciais.Communication.Requests;
-using GastosResidenciais.Communication.Responses;
+using GastosResidenciais.Communication.Requests.UserRequests;
+using GastosResidenciais.Communication.Responses.UserResponses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GastosResidenciais.API.Controllers;

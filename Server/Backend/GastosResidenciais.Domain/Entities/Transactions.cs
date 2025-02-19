@@ -14,6 +14,8 @@ namespace GastosResidenciais.Domain.Entities
         //Será usado para ordenar as transaçoes
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
+        public DateTime? UpdatedAt { get; set; }
+
         //Permite o relacionamento e a consulta para buscar dados do usuário.
         public User User { get; set; } = null!;
 

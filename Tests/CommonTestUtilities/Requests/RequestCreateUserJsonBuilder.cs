@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using GastosResidenciais.Communication.Requests;
+using GastosResidenciais.Communication.Requests.UserRequests;
 
 namespace CommonTestUtilities.Requests;
 

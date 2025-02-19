@@ -33,5 +33,22 @@ namespace GastosResidenciais.Infrastructure.DataAccess.Repositories
             _dbContext.Transactions.Remove(transaction);
         }
 
+        public async Task UpdateTransaction(Transactions transaction)
+        {
+            var transactionExists = await _dbContext.Transactions.FirstOrDefaultAsync(t => t.Id == transaction.Id);
+
+            if (transactionExists != null)
+            {
+                transactionExists.Description = transaction.Description;
+                transactionExists.Valor = transaction.Valor;
+                transactionExists.Types = transaction.Types;
+                transactionExists.UpdatedAt = DateTime.UtcNow;
+
+            }
+
+        }
     }
+
+
 }
+

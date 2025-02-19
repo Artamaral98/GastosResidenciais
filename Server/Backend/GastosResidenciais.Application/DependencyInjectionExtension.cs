@@ -3,6 +3,7 @@ using GastosResidenciais.Application.UseCases.Transactions.Create;
 using GastosResidenciais.Application.UseCases.Transactions.Delete;
 using GastosResidenciais.Application.UseCases.Transactions.Get;
 using GastosResidenciais.Application.UseCases.Transactions.GetAll;
+using GastosResidenciais.Application.UseCases.Transactions.Update;
 using GastosResidenciais.Application.UseCases.User.Create;
 using GastosResidenciais.Application.UseCases.User.Delete;
 using GastosResidenciais.Application.UseCases.User.Get;
@@ -43,6 +44,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<CreateTransactionValidator>();
         services.AddScoped<IGetAllTransactionsUseCase, GetAllTransactionsUseCase>();
         services.AddScoped<IDeleteTransactionUseCase, DeleteTransactionUseCase>();
+        services.AddScoped<IUpdateTransactionUseCase, UpdateTransactionUseCase>();
 
     }
 
