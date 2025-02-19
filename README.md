@@ -37,7 +37,7 @@ Backend
 
 Arquitetura, Fluxo e Domain Driven Design
 
-O backend foi desenvolvido com uma arquitetura baseada na abordagem Domain Driven Design (DDD), que consiste em dividir o sistema em quatro camadas principais: API, Application, Infrastrcture e Domain
+O backend foi desenvolvido através de c# com ASP.NET com uma arquitetura baseada na abordagem Domain Driven Design (DDD), que consiste em dividir o sistema em quatro camadas principais: API, Application, Infrastrcture e Domain
 
 Responsabilidades dos projetos:
 Api: Local onde são definidos os controllers, que recebem requisições e devolvem respostas (sucesso ou erro).
