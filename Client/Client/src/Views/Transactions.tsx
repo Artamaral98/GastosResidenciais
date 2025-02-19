@@ -16,11 +16,9 @@ const Transactions: React.FC = () => {
         selectedTransaction,
         confirmDeleteTransaction,
         transactionToBeEdit,
-        updateTransaction,
         isEditModalOpen,
         closeTransactionUpdateModal,
         editTransaction,
-        setEditTransaction
     } = useTransactions();
 
 
@@ -109,8 +107,6 @@ const Transactions: React.FC = () => {
                         isOpen={isEditModalOpen}
                         transaction={editTransaction}
                         closeModal={closeTransactionUpdateModal}
-                        onConfirm={confirmDeleteTransaction}
-
                     />
 
                     <Footer />

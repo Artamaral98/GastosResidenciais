@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-import { TransactionsModalProps } from "../../Services/Types/Types";
+import { TransactionsModalProps } from "../../Services/Models/Types";
 import formatTime from "../../Utils/FormatTime";
 import { IntlProvider, FormattedNumber } from "react-intl";
 

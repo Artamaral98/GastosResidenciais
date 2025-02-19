@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "../Components/Sidebar";
 import useUsers from "../Services/Hooks/useUsers";
 import useTransactions from "../Services/Hooks/useTransactions";
-import Footer from "../Components/Footer"
+import Footer from "../Components/Footer";
+import { NumericFormat } from "react-number-format";
 
 const NewTransaction: React.FC = () => {
-
-
-    const { users} = useUsers();
-
+    const { users } = useUsers();
     const {
         selectedUser,
         setSelectedUser,
@@ -18,8 +16,8 @@ const NewTransaction: React.FC = () => {
         setTransactionType,
         value,
         setValue,
-        handleSubmit } = useTransactions();
-
+        handleSubmit
+    } = useTransactions()
 
     return (
         <div className="flex min-h-screen">
@@ -59,7 +57,7 @@ const NewTransaction: React.FC = () => {
                                     value={transactionType}
                                     onChange={(e) => setTransactionType(e.target.value)}
                                     className="w-full px-3 py-2 bg-gray-100 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-[#DD4B25] focus:border-transparent"
-                                >                                    
+                                >
                                     <option value="0">Despesa</option>
                                     <option value="1">Receita</option>
                                 </select>
@@ -84,13 +82,15 @@ const NewTransaction: React.FC = () => {
                             <label htmlFor="valor" className="block text-sm mb-2">
                                 Valor
                             </label>
-                            <input
-                                type="number"
-                                step="0.01"
+                            <NumericFormat
+                                thousandSeparator="."
+                                decimalSeparator=","
+                                prefix="R$ "
                                 id="valor"
-                                max={999999999999}
+                                maxLength={19}
                                 value={value}
-                                onChange={(e) => setValue(e.target.value)}
+                                allowNegative={false}
+                                onValueChange={(values) => setValue(values.floatValue || 0)}
                                 className="w-full px-3 py-2 bg-gray-100 border-none rounded-md focus:outline-none focus:ring-2 focus:ring-[#DD4B25] focus:border-transparent"
                             />
                         </div>
@@ -105,11 +105,9 @@ const NewTransaction: React.FC = () => {
                 </div>
 
                 <Footer />
-
-
             </main>
         </div>
-    );
+    )
 }
 
 export default NewTransaction;

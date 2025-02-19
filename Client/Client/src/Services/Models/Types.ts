@@ -1,51 +1,45 @@
 export type GlobalTotal = {
     totalRevenue: number;
-    totalExpenses: number;
+    totalExpenses: number
     valor: number;
 };
 
 export type UsersResponse = {
     users: User[];
-    globalTotal: GlobalTotal;
+    globalTotal: GlobalTotal
 };
 
 export interface User {
-    id: number;
-    name: string;
-    age: number;
+    id: number
+    name: string
+    age: number
 }
 
 export interface Transaction {
-    id: number;
-    description: string;
-    valor: number;
-    types: number; 
-    userId: number;
+    id: number
+    description: string
+    valor: number
+    types: number;
+    userId: number
     date: string
+    updatedAt: string | null;
 }
 
 export interface TransactionsModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    transactions: Transaction[];
+    isOpen: boolean
+    onClose: () => void
+    transactions: Transaction[]
 }
 
 export interface DeleteModalProps {
     isOpen: boolean;
-    onClose: () => void; //Vai receber o método closeDeleteModal
-    onConfirm: () => void;//Vai receber o método confirmDelete
+    onClose: () => void //Vai receber o método closeDeleteModal
+    onConfirm: () => void//Vai receber o método confirmDelete
 }
 
 
 export interface UpdateTransactionModalProps {
-    isOpen: boolean;
+    isOpen: boolean
     transaction: { id: number | null; description: string; type: number | null; valor: number | null; userId: number | null };
-    closeModal: () => void;
-    updateTransaction: () => void;
-    setEditTransaction: React.Dispatch<React.SetStateAction<{
-        id: number | null;
-        type: number | null;
-        description: string;
-        valor: number | null;
-    }>>;
+    closeModal: () => void
 }

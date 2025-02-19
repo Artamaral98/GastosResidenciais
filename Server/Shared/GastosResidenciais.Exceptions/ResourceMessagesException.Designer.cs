@@ -97,6 +97,15 @@ namespace GastosResidenciais.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Não são permitidos caracteres especiais.
+        /// </summary>
+        public static string DESCRIPTION_SPECIAL_CARACTERS {
+            get {
+                return ResourceManager.GetString("DESCRIPTION_SPECIAL_CARACTERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O campo ID é obrigatório.
         /// </summary>
         public static string ID_EMPTY {
@@ -129,6 +138,15 @@ namespace GastosResidenciais.Exceptions {
         public static string NAME_MAX_LENGTH {
             get {
                 return ResourceManager.GetString("NAME_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O campo nome não pode conter caracteres especiais.
+        /// </summary>
+        public static string NAME_SPECIAL_CARACTERS {
+            get {
+                return ResourceManager.GetString("NAME_SPECIAL_CARACTERS", resourceCulture);
             }
         }
         

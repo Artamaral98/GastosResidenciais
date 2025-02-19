@@ -16,20 +16,19 @@ const useTransactions = () => {
     const [selectedTransaction, setSelectedTransaction] = useState<number | null>(null);
     const [deleteTransactionModalOpen, setDeleteTransactionModalOpen] = useState<boolean>(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
-
     const [editTransaction, setEditTransaction] = useState<{
-        id: number | null;
-        type: number | null;
-        description: string;
-        valor: number | null;
-        userId: number | null;
+        id: number | null
+        type: number | null
+        description: string
+        valor: number | null
+        userId: number | null
     }>({
         id: null,
         type: null,
         description: "",
         valor: null,
         userId: null
-    });
+    })
 
     
 
@@ -44,6 +43,12 @@ const useTransactions = () => {
             toast.error("Erro ao buscar Transações");
         }
     };
+
+    //carrega as transações após montar o componente
+    useEffect(() => {
+        fetchTransactions();
+    }, [])
+
 
 
     //criar uma nova transação
@@ -72,6 +77,7 @@ const useTransactions = () => {
 
             //casos para cada erro de validação
         } catch (error: any) {
+            console.log(error)
             if (error.response.data.errors[0]) {
                 toast.error(error.response.data.errors[0])
             }
@@ -106,20 +112,18 @@ const useTransactions = () => {
             String(description),
             Number(value),
             Number(transactionType)
-        );
+        )
 
-    };
+    }
 
     //método para deletar transãções
     const deleteTransaction = async (id: number) => {
         try {
             const response = await api.delete(`/transaction/${id}`)
             setTransactions(transactions.filter(transaction => transaction.id !== id))
-            console.log()
             toast.success(response.data.message);
 
         } catch (error) {
-            console.log(error.response)
             toast.error(error.response.data.message)
         }
     }
@@ -155,7 +159,8 @@ const useTransactions = () => {
                 valor: Number(editTransaction.valor),
                 types: Number(editTransaction.type),
                 id: Number(editTransaction.id),
-                userId: Number(editTransaction.userId)
+                userId: Number(editTransaction.userId),
+                updatedAt: new Date().toLocaleString() //insere a hora atual como string no UpdatedAt
             });
 
 
@@ -170,21 +175,19 @@ const useTransactions = () => {
             return true;
 
         } catch (error: any) {
-            console.log(error);
             toast.error(error.response?.data?.errors?.[0] || "Erro ao atualizar transação.");
             return false;
         }
-    }; 
+    };
 
     //Abrir o modal de transações do usuário
     const openTransactionsModal = async (userId: number) => {
         try {
             const response = await api.get<Transaction[]>(`/transaction/${userId}`);
             setUserTransactions(response.data);
-            console.log(response)
             setTransactionsModalOpen(true);
+
         } catch (error) {
-            console.log(error)
             toast.error("Erro ao carregar transações.");
         }
     }
@@ -214,7 +217,7 @@ const useTransactions = () => {
             await deleteTransaction(selectedTransaction);
             closeTransactionDeleteModal();
         }
-    };
+    }
 
 
     const openTransactionUpdateModal = (id: number) => {
@@ -230,7 +233,7 @@ const useTransactions = () => {
             });
             setIsEditModalOpen(true);
         }
-    };
+    }
 
     // Método para fechar o modal de atualização
     const closeTransactionUpdateModal = () => {
@@ -242,6 +245,12 @@ const useTransactions = () => {
             valor: null,
             userId: null
         });
+    }
+
+    //Método que impede a inserção de caracteres especiais e modifica o estado do input
+    const handleChangeTransaction = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const filteredValue = e.target.value.replace(/[^a-zA-ZÀ-ÿ0-9\s]/g, ""); 
+        setEditTransaction((prev) => ({ ...prev, description: filteredValue }));
     };
 
 
@@ -262,17 +271,10 @@ const useTransactions = () => {
 
             return true; // Se tudo estiver ok, pode continuar a edição
         } catch (error) {
-            console.error("Erro ao verificar a idade do usuário:", error);
             return false;
         }
     }
 
-
-
-    //carrega as transações após montar o componente
-    useEffect(() => {
-        fetchTransactions();
-    }, []);
 
 
     return {
@@ -280,7 +282,6 @@ const useTransactions = () => {
         createTransaction,
         selectedUser,
         setSelectedUser,
-        newTransaction,
         setNewTransaction,
         description,
         setDescription,
@@ -292,6 +293,7 @@ const useTransactions = () => {
         openTransactionsModal,
         closeTransactionsModal,
         transactionsModalOpen,
+        setEditTransaction,
         userTransactions,
         deleteTransaction,
         openDeleteTransactionModal,
@@ -303,9 +305,8 @@ const useTransactions = () => {
         isEditModalOpen,
         editTransaction,
         closeTransactionUpdateModal,
-        setEditTransaction,
-        fetchTransactions,
         openTransactionUpdateModal,
+        handleChangeTransaction,
     };
 };
 

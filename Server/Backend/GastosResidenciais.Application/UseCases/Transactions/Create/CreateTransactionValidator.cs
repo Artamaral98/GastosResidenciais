@@ -13,6 +13,7 @@ public class CreateTransactionValidator : AbstractValidator<RequestCreateTransac
         _repository = repository;
 
         RuleFor(transaction => transaction.Description).NotEmpty().WithMessage(ResourceMessagesException.DESCRIPTION_EMPTY);
+        RuleFor(transaction => transaction.Description).Matches(@"^[a-zA-ZÀ-ÿ\s]+$").WithMessage(ResourceMessagesException.DESCRIPTION_SPECIAL_CARACTERS);
         RuleFor(transaction => transaction.Description).MaximumLength(25).WithMessage(ResourceMessagesException.DESCRIPTION_MAX_LENGTH);
         RuleFor(transaction => transaction.Valor).NotEmpty().WithMessage(ResourceMessagesException.VALOR_EMPTY);
         RuleFor(transaction => transaction.Valor).GreaterThan(0).WithMessage(ResourceMessagesException.VALOR_GREATER_THAN_0);

@@ -2,14 +2,17 @@ import React, { useEffect } from "react";
 import { UpdateTransactionModalProps } from "../../Services/Models/Types";
 import useTransactions from "../../Services/Hooks/useTransactions";
 import { NumericFormat } from "react-number-format";
+import useFocus from "../../Services/Hooks/useFocus";
 
 const TransactionUpdateModal: React.FC<UpdateTransactionModalProps> = ({
     isOpen,
     transaction,
     closeModal,
 }) => {
-    const { editTransaction, setEditTransaction, updateTransaction } = useTransactions();
+    const { editTransaction, setEditTransaction, updateTransaction, handleChangeTransaction } = useTransactions();
+    const { inputRef } = useFocus();
 
+    //carrega o modal com as informações da transação
     useEffect(() => {
         if (transaction && transaction.id !== null) {
             setEditTransaction({
@@ -18,11 +21,12 @@ const TransactionUpdateModal: React.FC<UpdateTransactionModalProps> = ({
                 type: transaction.type === "expense" ? 0 : 1, //Permite que o tipo permaneça o mesmo
                 valor: transaction.valor,
                 userId: transaction.userId
-            });
+            })
         }
     }, [transaction, setEditTransaction]);
 
-    if (!isOpen) return null; // Evita renderizar se o modal estiver fechado
+
+    if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 backdrop-blur-sm z-50 flex justify-center items-center ">
@@ -32,12 +36,15 @@ const TransactionUpdateModal: React.FC<UpdateTransactionModalProps> = ({
                 
                 <input
                     type="text"
+                    id="transactionDescription"
+                    ref={inputRef}
+                    maxLength={22}
                     value={editTransaction.description}
-                    onChange={(e) => setEditTransaction((prev) => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) =>
+                        handleChangeTransaction(e)}
                     className="border p-2 w-full mb-2 rounded-md"
                 />
 
-                {/* Input do Valor (Agora com FormattedNumber) */}
                 <NumericFormat
                     value={editTransaction.valor ?? ""}
                     onValueChange={(values) =>
@@ -50,7 +57,6 @@ const TransactionUpdateModal: React.FC<UpdateTransactionModalProps> = ({
                     allowNegative={false}
                 />
 
-                {/* Dropdown para o Tipo */}
                 <select
                     value={editTransaction.type ?? ""}
                     onChange={(e) => setEditTransaction((prev) => ({ ...prev, type: Number(e.target.value) }))}
@@ -64,25 +70,23 @@ const TransactionUpdateModal: React.FC<UpdateTransactionModalProps> = ({
                     <button
                         onClick={closeModal}
                         className="bg-gray-500 text-white px-4 py-2 rounded mr-2 hover:bg-gray-400"
-                    >
-                        Cancelar
+                    > Cancelar
                     </button>
 
                     <button
                         onClick={async () => {
                             const success = await updateTransaction(editTransaction.id!);
                             if (success) {
-                                closeModal(); // Só fecha o modal se a atualização for bem-sucedida
+                                closeModal();
                             }
                         }}
                         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                    >
-                        Confirmar
+                    > Confirmar
                     </button>
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
 export default TransactionUpdateModal;

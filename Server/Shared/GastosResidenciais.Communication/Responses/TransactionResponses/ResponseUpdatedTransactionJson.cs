@@ -9,4 +9,5 @@ public class ResponseUpdatedTransactionJson
     public decimal Valor { get; set; }
     public string Types { get; set; } = string.Empty;
     public long UserId { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 }

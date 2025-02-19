@@ -51,8 +51,7 @@ const Home: React.FC = () => {
                         <button
                             type="submit"
                             className="px-14 py-3 bg-[#DD4B25] text-white rounded-md hover:bg-[#C64422] transition-colors"
-                        >
-                            Salvar
+                        >Salvar
                         </button>
                     </form>
                 </div>

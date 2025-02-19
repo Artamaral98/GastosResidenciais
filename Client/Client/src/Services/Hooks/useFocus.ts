@@ -11,8 +11,6 @@ const useFocus = () => {
         }
     };
 
-
-
     useEffect(() => {
         setFocus();
     }, []);

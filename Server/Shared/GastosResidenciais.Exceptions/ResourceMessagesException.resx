@@ -129,6 +129,9 @@
   <data name="DESCRIPTION_MAX_LENGTH" xml:space="preserve">
     <value>A descrição deve conter no máximo 22 caracteres</value>
   </data>
+  <data name="DESCRIPTION_SPECIAL_CARACTERS" xml:space="preserve">
+    <value>Não são permitidos caracteres especiais</value>
+  </data>
   <data name="ID_EMPTY" xml:space="preserve">
     <value>O campo ID é obrigatório</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="NAME_MAX_LENGTH" xml:space="preserve">
     <value>O campo nome deve conter no máximo 25 caracteres</value>
+  </data>
+  <data name="NAME_SPECIAL_CARACTERS" xml:space="preserve">
+    <value>O campo nome não pode conter caracteres especiais</value>
   </data>
   <data name="TYPES_EMPTY" xml:space="preserve">
     <value>O campo tipo é obrigatório</value>

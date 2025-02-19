@@ -31,6 +31,8 @@ public class UpdateTransactionUseCase : IUpdateTransactionUseCase
 
         var transaction = _mapper.Map<Domain.Entities.Transactions>(request);
 
+        transaction.UpdatedAt = DateTime.Now;
+
         if (isUnderage)
         {
             if (request.Types == Domain.Enums.TransactionTypes.revenue)

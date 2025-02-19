@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../api/api";
 import toast from "react-hot-toast";
-import { GlobalTotal, UsersResponse, User } from "../Types/Types"
+import { GlobalTotal, UsersResponse, User } from "../Models/Types"
 
 
 const useUsers = () => {
@@ -71,14 +71,17 @@ const useUsers = () => {
         setSelectedUser(null);
     };
 
-    //Função que lida com as mudanças nos campos do formulário
+    //função que lida com as mudanças nos campos do formulário de criar usuário. Impede a adição de caracteres especiais.
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { id, value } = e.target;
-        setNewUser(prevState => ({
-            ...prevState,
-            [id]: value,
-        }));
-    };
+        const { id, value } = e.target
+
+        if (id === "name") {
+            const filteredValue = value.replace(/[^a-zA-ZÀ-ÿ\s]/g, "")
+            setNewUser((values) => ({ ...values, [id]: filteredValue }))
+        } else {
+            setNewUser((values) => ({ ...values, [id]: value }))
+        }
+    }
 
     //função que lida com o envio do formulário
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
