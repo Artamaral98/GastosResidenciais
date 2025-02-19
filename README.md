@@ -1,37 +1,37 @@
-Instruções para inicialização do projeto: Recomendo a utilização do VSCODE 2022 para análise.
--Antes de tudo, cabe salientar que a aplicação utiliza banco de dados SQL server. Dessa forma, antes de inicializar o projeto, insira a Connection String referente ao seu login SQL server
+InstruÃ§Ãµes para inicializaÃ§Ã£o do projeto: Recomendo a utilizaÃ§Ã£o do Visual Studio 2022 para anÃ¡lise.
+-Antes de tudo, cabe salientar que a aplicaÃ§Ã£o utiliza banco de dados SQL server. Dessa forma, antes de inicializar o projeto, insira a Connection String referente ao seu login SQL server
 - "Connection": "Data Source=NOMEDOSEUSERVIDOR; Initial Catalog=gastosresidenciais;User ID=SEULOGONDOSQLSERVER;Password=SUASENHA;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;"
 
-- A ConnectionString deverá sem implementada em "Connection": "". Você encontrará no diretório: Server/Backend/GastosResidenciais.API/appsettings/appsettings.Development
-- - Não é necessária a criação manual do servidor/schema, apenas insira suas credenciais de login SQL SERVER e inicialize o projeto.
+- A ConnectionString deverÃ¡ sem implementada em "Connection": "". VocÃª encontrarÃ¡ no diretÃ³rio: Server/Backend/GastosResidenciais.API/appsettings/appsettings.Development
+- - NÃ£o Ã© necessÃ¡ria a criaÃ§Ã£o manual do servidor/schema, apenas insira suas credenciais de login SQL SERVER e inicialize o projeto.
 
--Após realizar a conexão com o banco de dados, siga as instruções para inicializar a aplicação:
-	- Inicie a API teclando F5, ou cliando no botão de play acima.
+-ApÃ³s realizar a conexÃ£o com o banco de dados, siga as instruÃ§Ãµes para inicializar a aplicaÃ§Ã£o:
+	- Inicie a API teclando F5, ou cliando no botÃ£o de play acima.
 	- para iniciar o frontend, no terminal da solution, insira os seguintes comandos:
 		- cd Client
 		- cd Client
 		-npm install (instalar as dependencias do projeto)
 		- npm run dev
-		- a porta http://localhost:49918 será inicializada, abra em seu navegador para ter acesso ao projeto.
+		- a porta http://localhost:49918 serÃ¡ inicializada, abra em seu navegador para ter acesso ao projeto.
 
--Ao iniciar a API, o Swagger será aberto, mostrando todos os endpoints e funcionalidades em relação a usuários e transações.
-- Em relação a usuários, é possível:
-	- criar usuário .
-	- listar um único usuário .
-	- listar todos os usuários, demonstrando o balanço total de cada um.
-	- Deletar um usuário.
+-Ao iniciar a API, o Swagger serÃ¡ aberto, mostrando todos os endpoints e funcionalidades em relaÃ§Ã£o a usuÃ¡rios e transaÃ§Ãµes.
+- Em relaÃ§Ã£o a usuÃ¡rios, Ã© possÃ­vel:
+	- criar usuÃ¡rio .
+	- listar um Ãºnico usuÃ¡rio .
+	- listar todos os usuÃ¡rios, demonstrando o balanÃ§o total de cada um.
+	- Deletar um usuÃ¡rio.
 	- 
-- Em relação as transações, é possível:
-	-Criar, deletar ou atualizar a transação de um usuário.
-	-Listar todas as transações e os seus respectivos usuários, ou apenas uma transação.
+- Em relaÃ§Ã£o as transaÃ§Ãµes, Ã© possÃ­vel:
+	-Criar, deletar ou atualizar a transaÃ§Ã£o de um usuÃ¡rio.
+	-Listar todas as transaÃ§Ãµes e os seus respectivos usuÃ¡rios, ou apenas uma transaÃ§Ã£o.
 
 
 - Acesse o frontend em http://localhost:49918 para uma melhor usabilidade do projeto.
 
-- Sobre o projeto a sua construção lógica:
-	- A presente aplicação foi desenvolvida, no que tange a API, seguindo a abordagem do DDD (Domain Driven Design) em relação às práticas de organização, estruturação e interação das camadas,
-facilitando a escalabilidade, manutenção e desenvolvimento do código.
-	- Em relação ao Frontend, este foi desevolvido utilizando React, TypeScript, Tailwind CSS, além de seguir boas práticas de desenvolvimento, escrita e organização, assim como o backend.
+- Sobre o projeto a sua construÃ§Ã£o lÃ³gica:
+	- A presente aplicaÃ§Ã£o foi desenvolvida, no que tange a API, seguindo a abordagem do DDD (Domain Driven Design) em relaÃ§Ã£o Ã s prÃ¡ticas de organizaÃ§Ã£o, estruturaÃ§Ã£o e interaÃ§Ã£o das camadas,
+facilitando a escalabilidade, manutenÃ§Ã£o e desenvolvimento do cÃ³digo.
+	- Em relaÃ§Ã£o ao Frontend, este foi desevolvido utilizando React, TypeScript, Tailwind CSS, alÃ©m de seguir boas prÃ¡ticas de desenvolvimento, escrita e organizaÃ§Ã£o, assim como o backend.
 
 Backend
 
@@ -40,43 +40,43 @@ Arquitetura, Fluxo e Domain Driven Design
 O backend foi desenvolvido com uma arquitetura baseada na abordagem Domain Driven Design (DDD), que consiste em dividir o sistema em quatro camadas principais: API, Application, Infrastrcture e Domain
 
 Responsabilidades dos projetos:
-Api: Local onde são definidos os controllers, que recebem requisições e devolvem respostas (sucesso ou erro).
+Api: Local onde sÃ£o definidos os controllers, que recebem requisiÃ§Ãµes e devolvem respostas (sucesso ou erro).
 
-Appication: Projeto que recebe a requisição capturada e repassada pelo projeto e API. Neste projeto, são implementada as regras de negócio. Por exemplo, ao criar uma transação para um  
-usuário cadastrado como menor de idade (menor de 18), apenas despesas deverão ser aceitas. Essa validação é realizada através de uma classe específica, usando a biblioteca FluentValidator, que checa
-se todos os elementos da requisição estão válidos, caso contrário retorna uma mensagem de erro específica para a validação que não foi aprovada
+Appication: Projeto que recebe a requisiÃ§Ã£o capturada e repassada pelo projeto e API. Neste projeto, sÃ£o implementada as regras de negÃ³cio. Por exemplo, ao criar uma transaÃ§Ã£o para um  
+usuÃ¡rio cadastrado como menor de idade (menor de 18), apenas despesas deverÃ£o ser aceitas. Essa validaÃ§Ã£o Ã© realizada atravÃ©s de uma classe especÃ­fica, usando a biblioteca FluentValidator, que checa
+se todos os elementos da requisiÃ§Ã£o estÃ£o vÃ¡lidos, caso contrÃ¡rio retorna uma mensagem de erro especÃ­fica para a validaÃ§Ã£o que nÃ£o foi aprovada
 	
-Infrastructure: Implementa os códigos que executam serviços externos a API, como Banco de Dados. A implementação do EntityFramework e conexão com SQL Server estão presentes neste projeto. Os métodos
-responsáveis por criar, deletar, atualizar e lista estão presentes neste projeto.
+Infrastructure: Implementa os cÃ³digos que executam serviÃ§os externos a API, como Banco de Dados. A implementaÃ§Ã£o do EntityFramework e conexÃ£o com SQL Server estÃ£o presentes neste projeto. Os mÃ©todos
+responsÃ¡veis por criar, deletar, atualizar e lista estÃ£o presentes neste projeto.
 
-Domain: Uma das ideias chave do DDD é criar uma linguagem comum a todos os envolvidos no projeto. Então todas as propriedades que compoem as entidades usuário ou transações estarão presentes neste 
-projeto. Ex: nome, idade. Além disso, neste projeto estão situados as interfaces (contratos), que definem os métodos implementados em Infrastructure. Essa interface será recebida pelo projeto de 
-Application, para implementar os métodos, separando as regras de negócio dos dados propriamente ditos, contidos em Infrastructure. Para isso, é utilizada a Injeção de dependência.
+Domain: Uma das ideias chave do DDD Ã© criar uma linguagem comum a todos os envolvidos no projeto. EntÃ£o todas as propriedades que compoem as entidades usuÃ¡rio ou transaÃ§Ãµes estarÃ£o presentes neste 
+projeto. Ex: nome, idade. AlÃ©m disso, neste projeto estÃ£o situados as interfaces (contratos), que definem os mÃ©todos implementados em Infrastructure. Essa interface serÃ¡ recebida pelo projeto de 
+Application, para implementar os mÃ©todos, separando as regras de negÃ³cio dos dados propriamente ditos, contidos em Infrastructure. Para isso, Ã© utilizada a InjeÃ§Ã£o de dependÃªncia.
 
-Exception: Projeto responsável por conter a base das execções que serão tratadas e enviadas como resposta, além das mensagens de erros customizadas para cada caso.
+Exception: Projeto responsÃ¡vel por conter a base das execÃ§Ãµes que serÃ£o tratadas e enviadas como resposta, alÃ©m das mensagens de erros customizadas para cada caso.
 
-Communication: Responsável por armazenar os modelos de Requests e Responses para cada funcionalidade da aplicação.
+Communication: ResponsÃ¡vel por armazenar os modelos de Requests e Responses para cada funcionalidade da aplicaÃ§Ã£o.
 
-Fluxo: A requisição é recebida pela API -> API chama o controller pertinente de acordo com a rota, que chama o useCase do caso específico -> Requisição enviada para a regra de negócio (projeto de 
-Application) dentro do useCase-> Após a validação, caso tudo esteja correto, haverá a adoção dos métodos do projeto de Infrastructure, repassados a através de uma interface para que seja 
-realizada a operação pertinente, e haja a conversação com a base de dadose salvar as alterações.
+Fluxo: A requisiÃ§Ã£o Ã© recebida pela API -> API chama o controller pertinente de acordo com a rota, que chama o useCase do caso especÃ­fico -> RequisiÃ§Ã£o enviada para a regra de negÃ³cio (projeto de 
+Application) dentro do useCase-> ApÃ³s a validaÃ§Ã£o, caso tudo esteja correto, haverÃ¡ a adoÃ§Ã£o dos mÃ©todos do projeto de Infrastructure, repassados a atravÃ©s de uma interface para que seja 
+realizada a operaÃ§Ã£o pertinente, e haja a conversaÃ§Ã£o com a base de dadose salvar as alteraÃ§Ãµes.
 
 FrontEnd.
 
-O frontend foi desenvolvido com React, TypeScript, Tailwind CSS, seguindo práticas de componentização, hooks e gerenciamento de estado e roteamento do React Router Dom´.
+O frontend foi desenvolvido com React, TypeScript, Tailwind CSS, seguindo prÃ¡ticas de componentizaÃ§Ã£o, hooks e gerenciamento de estado e roteamento do React Router DomÂ´.
 
 Principais Funcionalidades
 
-Novo Usuário, Rota "/": Formulário de criação de usuário, devendo ser repassado o nome e a idade.
+Novo UsuÃ¡rio, Rota "/": FormulÃ¡rio de criaÃ§Ã£o de usuÃ¡rio, devendo ser repassado o nome e a idade.
 
-Listar usuários Rota "/usuarios": Retorna uma lista de todos os usuários, informando nome, idade e permite a deleção e verificação de todas as transações daquele usuário através da abertura de um modal,
+Listar usuÃ¡rios Rota "/usuarios": Retorna uma lista de todos os usuÃ¡rios, informando nome, idade e permite a deleÃ§Ã£o e verificaÃ§Ã£o de todas as transaÃ§Ãµes daquele usuÃ¡rio atravÃ©s da abertura de um modal,
 com rolagem e cores distintas para receitas e despesa.
 
-Nova Transação, Rota"/nova-transacao": Permite a criação de transação para uma pessoa, implementando a regra de negócio de verificação de menor de idade. O Caso o usuário selecione um menor de idade 
-(menor de 18), apenas despesas serão criadas
+Nova TransaÃ§Ã£o, Rota"/nova-transacao": Permite a criaÃ§Ã£o de transaÃ§Ã£o para uma pessoa, implementando a regra de negÃ³cio de verificaÃ§Ã£o de menor de idade. O Caso o usuÃ¡rio selecione um menor de idade 
+(menor de 18), apenas despesas serÃ£o criadas
 
-Transações, Rota "/transacoes": Listagem de todas as transações criadas até o momento, ordenadas pela criada mais recente, mostrando a qual usuário pertence. Além de permitir a deleção e atualização 
-da respectiva transação através da abertuda de modal.
+TransaÃ§Ãµes, Rota "/transacoes": Listagem de todas as transaÃ§Ãµes criadas atÃ© o momento, ordenadas pela criada mais recente, mostrando a qual usuÃ¡rio pertence. AlÃ©m de permitir a deleÃ§Ã£o e atualizaÃ§Ã£o 
+da respectiva transaÃ§Ã£o atravÃ©s da abertuda de modal.
 
-Consulta de Totais: Exibe todos os usuários cadastrados, exibindo o total de receitas, despesas e o saldo (receita – despesa) de cada um. Ao final da listagem exibe o total geral de todos os 
-usários incluindo o total de receitas, total de despesas e o saldo líquido.
+Consulta de Totais: Exibe todos os usuÃ¡rios cadastrados, exibindo o total de receitas, despesas e o saldo (receita â€“ despesa) de cada um. Ao final da listagem exibe o total geral de todos os 
+usÃ¡rios incluindo o total de receitas, total de despesas e o saldo lÃ­quido.
