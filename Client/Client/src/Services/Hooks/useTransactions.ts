@@ -164,12 +164,11 @@ const useTransactions = () => {
             });
 
 
-            //alterando o estado da lista de transações, adicionando a nova transação
-            const updatedTransactions = transactions.map((transaction) =>
-                transaction.id === id ? { ...transaction, ...response.data } : transaction
-            );
-
-            setTransactions(updatedTransactions);
+            setTransactions((transactions) =>
+                transactions.map((transaction) =>
+                    transaction.id === id ? { ...transaction, ...response.data } : transaction
+                )
+            );;
 
             toast.success("Transação atualizada com sucesso!");
             return true;

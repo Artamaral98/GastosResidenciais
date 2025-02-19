@@ -1,5 +1,5 @@
 import React from "react";
-import { DeleteModalProps } from "../Services/Types/Types"
+import { DeleteModalProps } from "../../Services/Models/Types"
 
 
 
