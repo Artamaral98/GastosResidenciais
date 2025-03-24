@@ -53,13 +53,13 @@ Domain: Uma das ideias chave do DDD é criar uma linguagem comum a todos os envo
 projeto. Ex: nome, idade. Além disso, neste projeto estão situados as interfaces (contratos), que definem os métodos implementados em Infrastructure. Essa interface será recebida pelo projeto de 
 Application, para implementar os métodos, separando as regras de negócio dos dados propriamente ditos, contidos em Infrastructure. Para isso, é utilizada a Injeção de dependência.
 
-Exception: Projeto responsável por conter a base das execções que serão tratadas e enviadas como resposta, além das mensagens de erros customizadas para cada caso.
+Exception: Projeto responsável por conter a base das exceções que serão tratadas e enviadas como resposta, além das mensagens de erros customizadas para cada caso.
 
 Communication: Responsável por armazenar os modelos de Requests e Responses para cada funcionalidade da aplicação.
 
 Fluxo: A requisição é recebida pela API -> API chama o controller pertinente de acordo com a rota, que chama o useCase do caso específico -> Requisição enviada para a regra de negócio (projeto de 
 Application) dentro do useCase-> Após a validação, caso tudo esteja correto, haverá a adoção dos métodos do projeto de Infrastructure, repassados a através de uma interface para que seja 
-realizada a operação pertinente, e haja a conversação com a base de dadose salvar as alterações.
+realizada a operação pertinente, e haja a conversação com a base de dados e salvar as alterações.
 
 FrontEnd.
 
@@ -69,7 +69,7 @@ Principais Funcionalidades
 
 Novo Usuário, Rota "/": Formulário de criação de usuário, devendo ser repassado o nome e a idade.
 
-Listar usuários Rota "/usuarios": Retorna uma lista de todos os usuários, informando nome, idade e permite a deleção e verificação de todas as transações daquele usuário através da abertura de um modal,
+Listar usuários, Rota "/usuarios": Retorna uma lista de todos os usuários, informando nome, idade e permite a deleção e verificação de todas as transações daquele usuário através da abertura de um modal,
 com rolagem e cores distintas para receitas e despesa.
 
 Nova Transação, Rota"/nova-transacao": Permite a criação de transação para uma pessoa, implementando a regra de negócio de verificação de menor de idade. O Caso o usuário selecione um menor de idade 
